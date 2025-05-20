@@ -1,3 +1,9 @@
+ekstrak di htdocs
+
+pastikan xampp menyala
+
+`localhost/jahitgo`
+
 # Rekomendasi Ekstensi VSCode
 
 `Ctrl+Shift+X`
