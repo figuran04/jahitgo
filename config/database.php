@@ -1,34 +1,41 @@
 <?php
 $BASE = "http://localhost/jahitgo";
 $BASE_URL = $BASE . "/views";
+
 $host = "localhost";
 $user = "root";
 $pass = "";
 $dbname = "jahitgo_db";
 
-// Koneksi awal tanpa menentukan database
-$conn = mysqli_connect($host, $user, $pass);
+// Koneksi ke MySQL tanpa database
+$conn = new mysqli($host, $user, $pass);
 
 // Cek koneksi awal
-if (!$conn) {
-    die("Koneksi ke server gagal: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Koneksi ke server gagal: " . $conn->connect_error);
 }
 
 // Buat database jika belum ada
-$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
-if (mysqli_query($conn, $sql)) {
-    // echo "Database berhasil dicek/dibuat.<br>";
-} else {
-    die("Gagal membuat database: " . mysqli_error($conn));
+if (!$conn->query("CREATE DATABASE IF NOT EXISTS `$dbname`")) {
+    die("Gagal membuat database: " . $conn->error);
 }
 
 // Pilih database
-mysqli_select_db($conn, $dbname);
+$conn->select_db($dbname);
 
-// Cek apakah koneksi ke database berhasil
-if (!$conn) {
-    die("Koneksi ke database gagal: " . mysqli_connect_error());
+// Buat tabel `users` jika belum ada
+$createUsersTable = "
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') DEFAULT 'user',
+    status ENUM('active', 'blocked') DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+";
+
+if (!$conn->query($createUsersTable)) {
+    die("Gagal membuat tabel users: " . $conn->error);
 }
-
-// Lanjutkan dengan kode lain (misalnya, cek atau buat tabel)
-// echo "Koneksi ke database '$dbname' berhasil.";

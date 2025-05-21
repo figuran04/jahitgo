@@ -4,12 +4,16 @@
     <div>
         <ul class="flex flex-col items-center xl:items-start">
             <li class="flex gap-2 items-center px-3 py-3">
-                <i class="ph-fill ph-yarn text-4xl"></i>
-                <p class="hidden lg:hidden xl:block">JahitGo.</p>
+                <a href="../home">
+                    <i class="ph-fill ph-yarn text-4xl"></i>
+                    <p class="hidden lg:hidden xl:block">JahitGo.</p>
+                </a>
             </li>
             <li class="flex gap-2 items-center px-3 py-3">
-                <i class="ph-bold ph-chat text-3xl"></i>
-                <p class="hidden lg:hidden xl:block">Chat</p>
+                <a href="../chat">
+                    <i class="ph-bold ph-chat text-3xl"></i>
+                    <p class="hidden lg:hidden xl:block">Chat</p>
+                </a>
             </li>
             <li class="flex gap-2 items-center px-3 py-3">
                 <i class="ph-bold ph-magnifying-glass text-3xl"></i>
