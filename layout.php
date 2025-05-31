@@ -3,9 +3,17 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $currentPath = trim($_SERVER['REQUEST_URI'], '/');
-$hideHeaderFooter = preg_match('#views/(login|register|admin)#', $currentPath);
+
+// Tentukan halaman-halaman tanpa header/footer
+$hideHeaderFooter =
+    $currentPath === '' ||                          // /
+    $currentPath === 'index.php' ||                 // /index.php
+    preg_match('#views/(signin|signup|admin)#', $currentPath);
+
+// Cek admin page
 $isAdminPage = strpos($currentPath, 'admin') !== false;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,18 +42,28 @@ $isAdminPage = strpos($currentPath, 'admin') !== false;
     <link rel="stylesheet" href="<?= $BASE_URL; ?>/global.css">
 </head>
 
-<body class="bg-gray-200">
-    <main class="container mx-auto flex items-start">
-        <?php if (!$hideHeaderFooter) include 'includes/LeftbarInclude.php'; ?>
-        <div class="bg-gray-50 gap-4 min-h-screen w-full">
-            <?php if (!$hideHeaderFooter) include 'includes/HeaderInclude.php'; ?>
-            <div class="flex flex-col gap-4 min-h-screen">
-                <?= isset($content) ? $content : '<p>Page Not Found</p>'; ?>
+<body class="bg-gray-50 flex">
+    <?php if (!$hideHeaderFooter) include 'includes/LeftbarInclude.php'; ?>
+    <div class="w-full">
+        <?php if (!$hideHeaderFooter) include 'includes/HeaderInclude.php'; ?>
+        <main class="flex h-screen overflow-hidden <?= !$hideHeaderFooter ? '-mt-14' :  '' ?>">
+            <!-- Konten Utama -->
+            <div class="flex-1 overflow-y-auto bg-gray-50 <?= !$hideHeaderFooter ? 'mt-14' :  '' ?>">
+                <div class="min-h-full flex flex-col gap-4">
+                    <?= isset($content) ? $content : '<p>Page Not Found</p>'; ?>
+                    <?php if (!$hideHeaderFooter) include 'includes/FooterInclude.php'; ?>
+                </div>
             </div>
-            <?php if (!$hideHeaderFooter) include 'includes/FooterInclude.php'; ?>
-        </div>
-        <?php if (!$hideHeaderFooter) include 'includes/RightbarInclude.php'; ?>
-    </main>
+
+            <!-- Rightbar -->
+            <?php if (!$hideHeaderFooter): ?>
+                <div class="w-80 overflow-y-auto bg-white border-l border-gray-200 p-4 mt-14 hidden md:block">
+                    <?php include 'includes/RightbarInclude.php'; ?>
+                </div>
+            <?php endif; ?>
+        </main>
+
+    </div>
 </body>
 
 </html>

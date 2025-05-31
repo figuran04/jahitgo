@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Validasi awal
     if (empty($name) || empty($email) || empty($password)) {
         $_SESSION['error'] = "Semua field wajib diisi.";
-        header("Location: ../../views/register");
+        header("Location: ../../views/signup");
         exit;
     }
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Cek apakah email sudah terdaftar
     if ($userModel->isEmailExist($email)) {
         $_SESSION['error'] = "Email sudah terdaftar.";
-        header("Location: ../../views/register");
+        header("Location: ../../views/signup");
         exit;
     }
 
@@ -29,13 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     // Simpan user baru
-    if ($userModel->register($name, $email, $hashedPassword)) {
-        $_SESSION['success'] = "Akun berhasil dibuat! Silakan login.";
-        header("Location: ../../views/login");
+    if ($userModel->signup($name, $email, $hashedPassword)) {
+        $_SESSION['success'] = "Akun berhasil dibuat! Silakan signin.";
+        header("Location: ../../views/signin");
         exit;
     } else {
         $_SESSION['error'] = "Gagal mendaftar, coba lagi.";
-        header("Location: ../../views/register");
+        header("Location: ../../views/signup");
         exit;
     }
 }

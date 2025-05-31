@@ -7,11 +7,19 @@ ob_start();
 <style type="text/tailwindcss">
 
 </style>
-<h1 class="text-2xl font-bold text-center text-violet-800 mt-4"><a href="../home">JahitGo</a></h1>
-<div class="flex w-full justify-center mt-20">
-    <div class="w-full md:w-2/3 mx-4 px-4 py-3 rounded-lg shadow flex flex-col gap-3">
-        <h2 class="text-violet-800 text-xl font-semibold text-center mt-2">Daftar Sekarang</h2>
-        <p class="text-center">Sudah punya akun? <a href="../login">Masuk</a></p>
+<div class="flex flex-col md:flex-row w-full justify-center md:min-h-screen bg-indigo-600">
+    <div class="bg-indigo-600 text-white w-full pt-4 pb-8 flex justify-center items-center">
+        <a href="../home" class="flex items-center flex-col">
+            <i class="ph-fill ph-yarn text-4xl md:text-8xl"></i>
+            <h1 class="text-2xl md:text-3xl font-bold">JahitGo</h1>
+        </a>
+    </div>
+
+    <div class="w-full md:w-2/3 md:mx-0 px-6 md:px-8 py-3 rounded-t-2xl md:rounded-none flex flex-col gap-3 md:justify-center bg-gray-50">
+        <div class="flex flex-col md:flex-col xl:flex-row justify-between xl:items-center gap-3 xl:gap-0">
+            <h2 class="text-indigo-600 text-2xl font-bold text-center md:text-left mt-2">Daftar Sekarang</h2>
+            <p class="text-center md:text-left">Sudah punya akun? <a href="../signin" class="hover:text-indigo-700">Masuk</a></p>
+        </div>
         <?php if (isset($_SESSION['error'])): ?>
             <div class="p-4 text-red-700 bg-red-100 border border-red-300 rounded">
                 <p><?= htmlspecialchars($_SESSION['error']); ?></p>
@@ -25,17 +33,17 @@ ob_start();
             </div>
         <?php endif; ?>
 
-        <form action="../../controllers/auth/register_handler.php" method="POST" class="flex flex-col gap-1">
+        <form action="../../controllers/auth/signup_handler.php" method="POST" class="flex flex-col gap-1">
             <label for="name">Nama:</label>
-            <input class="border rounded border-gray-300 p-2 outline-violet-800" type="text" id="name" name="name" placeholder="John Doe" required>
+            <input class="border rounded border-gray-300 p-2 outline-indigo-600 w-full" type="text" id="name" name="name" placeholder="John Doe" required>
 
             <label for="email">Email:</label>
-            <input class="border rounded border-gray-300 p-2 outline-violet-800" type="email" id="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Masukkan email yang valid">
+            <input class="border rounded border-gray-300 p-2 outline-indigo-600 w-full" type="email" id="email" name="email" required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="Masukkan email yang valid">
 
             <label for="password">Password:</label>
-            <input class="border rounded border-gray-300 p-2 outline-violet-800" type="password" id="password" name="password" required minlength="6" title="Minimal 6 karakter">
+            <input class="border rounded border-gray-300 p-2 outline-indigo-600 w-full" type="password" id="password" name="password" required minlength="6" title="Minimal 6 karakter">
 
-            <button class="mt-3 rounded px-4 py-2 bg-gray-100 text-gray-200 cursor-not-allowed" type="submit" id="nextButton" disabled>Daftar</button>
+            <button class="mt-3 rounded px-4 py-2 bg-gray-100 text-gray-200 cursor-not-allowed w-full" type="submit" id="nextButton" disabled>Daftar</button>
         </form>
 
         <p class="text-sm">
@@ -58,12 +66,12 @@ ob_start();
         // Jika kedua field terisi, aktifkan tombol
         if (name !== "" && email !== "" && password !== "") {
             nextButton.disabled = false;
-            nextButton.classList.add("bg-violet-800", "hover:bg-violet-700", "text-gray-50", "cursor-pointer");
+            nextButton.classList.add("bg-indigo-600", "hover:bg-indigo-700", "text-gray-50", "cursor-pointer");
             nextButton.classList.remove("bg-gray-100", "text-gray-200", "cursor-not-allowed");
         } else {
             // Jika salah satu atau keduanya kosong, nonaktifkan tombol
             nextButton.disabled = true;
-            nextButton.classList.remove("bg-violet-800", "hover:bg-violet-700", "text-gray-50", "cursor-pointer");
+            nextButton.classList.remove("bg-indigo-600", "hover:bg-indigo-700", "text-gray-50", "cursor-pointer");
             nextButton.classList.add("bg-gray-100", "text-gray-200", "cursor-not-allowed");
         }
     }

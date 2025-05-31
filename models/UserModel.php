@@ -33,7 +33,7 @@ class UserModel
         return $stmt->num_rows > 0;
     }
 
-    public function register($name, $email, $password)
+    public function signup($name, $email, $password)
     {
         $stmt = $this->db->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $name, $email, $password);

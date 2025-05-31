@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Email dan password wajib diisi!";
-        header("Location: ../../views/login");
+        header("Location: ../../views/signin");
         exit;
     }
 
@@ -18,17 +18,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!$user) {
         $_SESSION['error'] = "Email belum terdaftar.";
-        header("Location: ../../views/login");
+        header("Location: ../../views/signin");
         exit;
     }
 
     if (!password_verify($password, $user['password'])) {
         $_SESSION['error'] = "Password salah.";
-        header("Location: ../../views/login");
+        header("Location: ../../views/signin");
         exit;
     }
 
-    // Login sukses
+    // signin sukses
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = htmlspecialchars($user['name']);
     $_SESSION['user_email'] = htmlspecialchars($user['email']);
