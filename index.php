@@ -32,7 +32,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <a href="views/home/" class="bg-indigo-600 text-white px-4 py-1.5 rounded-lg hover:bg-indigo-700 border-[3px] border-indigo-600 hover:border-indigo-700">Dashboard</a>
                 <?php else: ?>
-                    <div class="space-x-1">
+                    <div class="space-x-4">
                         <a href="views/signin" class="text-indigo-600 hover:text-indigo-700 border-[3px] rounded-lg border-indigo-600 hover:border-indigo-700 px-4 py-1.5">Masuk</a>
                         <a href="views/signup" class="bg-indigo-600 text-white px-4 py-1.5 rounded-lg hover:bg-indigo-700 border-[3px] border-indigo-600 hover:border-indigo-700">Daftar</a>
                     </div>

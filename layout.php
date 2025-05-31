@@ -57,7 +57,7 @@ $isAdminPage = strpos($currentPath, 'admin') !== false;
 
             <!-- Rightbar -->
             <?php if (!$hideHeaderFooter): ?>
-                <div class="w-80 overflow-y-auto bg-white border-l border-gray-200 p-4 mt-14 hidden md:block">
+                <div class="w-80 overflow-y-auto p-4 mt-14 hidden md:block">
                     <?php include 'includes/RightbarInclude.php'; ?>
                 </div>
             <?php endif; ?>

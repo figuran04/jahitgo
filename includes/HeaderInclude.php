@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) session_start();
                 </li>
                 <!-- <p class="hidden lg:hidden xl:block">Search</p> -->
             </ul>
-            <ul class="flex items-center xl:items-start space-x-2">
+            <ul class="flex items-center xl:items-start space-x-4">
                 <li>
                     <a href="../notification" class="flex space-x-2 items-center">
                         <i class="ph-bold ph-bell text-3xl"></i>
