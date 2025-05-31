@@ -46,7 +46,7 @@ $isAdminPage = strpos($currentPath, 'admin') !== false;
     <?php if (!$hideHeaderFooter) include 'includes/LeftbarInclude.php'; ?>
     <div class="w-full">
         <?php if (!$hideHeaderFooter) include 'includes/HeaderInclude.php'; ?>
-        <main class="flex h-screen overflow-hidden <?= !$hideHeaderFooter ? '-mt-14' :  '' ?>">
+        <main class="container mx-auto flex h-screen overflow-hidden <?= !$hideHeaderFooter ? '-mt-14' :  '' ?>">
             <!-- Konten Utama -->
             <div class="flex-1 overflow-y-auto bg-gray-50 <?= !$hideHeaderFooter ? 'mt-14' :  '' ?>">
                 <div class="min-h-full flex flex-col gap-4">
