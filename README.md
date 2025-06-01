@@ -1,6 +1,6 @@
-ekstrak di htdocs
-
-pastikan xampp menyala
+- ekstrak di htdocs
+- pastikan xampp menyala
+- pastikan nama folder `jahitgo`
 
 `localhost/jahitgo`
 
@@ -13,10 +13,8 @@ pastikan xampp menyala
 - php intelephense
 - php namespace resolver
 - HTML CSS Support
+- Tailwindcss
 - Prettier
 - Highlight Match
 - CSS Peek
-- Live Server
-- Tailwindcss
-- Headwind
 - Codeium
