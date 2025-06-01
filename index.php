@@ -20,7 +20,7 @@ if (session_status() === PHP_SESSION_NONE) {
             </a>
             <div class="space-x-8 flex items-center">
 
-                <ul class="space-x-8 flex items-center">
+                <ul class="space-x-4 md:space-x-8 flex items-center">
                     <li>
                         <a href="views/search" class="text-gray-600 hover:text-[var(--primary-color)] flex space-x-1 items-center">
                             <i class="block md:hidden ph-fill ph-magnifying-glass text-xl"></i><span class="hidden md:block">Cari</span>
