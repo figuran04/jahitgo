@@ -1,14 +1,20 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
+$excludedForHeader = ['', 'index.php'];
+$excludedForFooter = ['', 'index.php'];
+
 $currentPath = trim($_SERVER['REQUEST_URI'], '/');
 
-// Tentukan halaman-halaman tanpa header/footer
-$hideHeaderFooter =
-    $currentPath === '' ||                          // /
-    $currentPath === 'index.php' ||                 // /index.php
-    preg_match('#views/(signin|signup|admin)#', $currentPath);
+// Cek apakah current path cocok dengan pola tertentu
+$matchesAuthOrAdmin = preg_match('#views/(signin|signup|admin)#', $currentPath);
+$matchesFooterExtra = preg_match('#views/(signin|signup|admin|chat)#', $currentPath);
+
+// Tentukan kondisi
+$hideHeader = in_array($currentPath, $excludedForHeader) || $matchesAuthOrAdmin;
+$hideFooter = in_array($currentPath, $excludedForFooter) || $matchesFooterExtra;
+
 
 // Cek admin page
 $isAdminPage = strpos($currentPath, 'admin') !== false;
@@ -18,52 +24,49 @@ $isAdminPage = strpos($currentPath, 'admin') !== false;
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JahitGo merupakan platform ....">
-    <meta name="keywords" content="JahitGo, Jahit, Indonesia, Fashion">
-    <meta name="author" content="JahitGo Team">
-    <title><?php echo isset($pageTitle) ? $pageTitle . " - JahitGo" : "JahitGo"; ?></title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
-    <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
-    <link rel="stylesheet" href="<?= $BASE_URL; ?>/global.css">
-</head>
+<?php include 'includes/MetaInclude.php' ?>
 
-<body class="bg-gray-50 flex">
-    <?php if (!$hideHeaderFooter) include 'includes/LeftbarInclude.php'; ?>
-    <div class="w-full">
-        <?php if (!$hideHeaderFooter) include 'includes/HeaderInclude.php'; ?>
-        <main class="container mx-auto flex h-screen overflow-hidden <?= !$hideHeaderFooter ? '-mt-14' :  '' ?>">
-            <!-- Konten Utama -->
-            <div class="flex-1 overflow-y-auto bg-gray-50 <?= !$hideHeaderFooter ? 'mt-14' :  '' ?>">
-                <div class="min-h-full flex flex-col gap-4">
-                    <?= isset($content) ? $content : '<p>Page Not Found</p>'; ?>
-                    <?php if (!$hideHeaderFooter) include 'includes/FooterInclude.php'; ?>
-                </div>
-            </div>
+<body class="bg-gray-50 flex flex-col">
+  <?php if (!$hideHeader) include 'includes/HeaderInclude.php'; ?>
+  <div class="flex">
+    <?php if (!$hideHeader): ?>
+      <aside class="shadow-md sticky top-0 bg-[var(--primary-color)] text-white flex-col justify-between hidden md:flex w-min">
+        <?php if (!$hideHeader) include 'includes/LeftbarInclude.php'; ?>
+      </aside>
+    <?php endif; ?>
+    <!-- Rightbar -->
 
-            <!-- Rightbar -->
-            <?php if (!$hideHeaderFooter): ?>
-                <div class="w-80 overflow-y-auto p-4 mt-14 hidden md:block">
-                    <?php include 'includes/RightbarInclude.php'; ?>
-                </div>
-            <?php endif; ?>
-        </main>
+    <main class="<?= !$hideHeader ? 'container mx-auto' :  'w-full' ?> flex h-screen overflow-hidden <?= !$hideHeader ? '-mt-[58px]' :  '' ?>">
+      <!-- Konten Utama -->
+      <div class="flex-1 overflow-y-auto custom-scroll bg-gray-50 <?= !$hideHeader ? 'mt-[58px]' :  '' ?>">
+        <div class="min-h-full flex flex-col gap-4 <?= !$hideHeader ? 'p-4' :  '' ?>">
+          <?= isset($content) ? $content : '<p>Page Not Found</p>'; ?>
+        </div>
+        <?php if (!$hideFooter) include 'includes/FooterInclude.php'; ?>
+      </div>
 
-    </div>
+      <!-- Rightbar -->
+      <?php if (!empty($subscribes)): ?>
+        <div class="w-80 overflow-y-auto custom-scroll p-4 mt-14 hidden lg:block">
+          <?php include 'includes/RightbarInclude.php'; ?>
+        </div>
+      <?php endif; ?>
+    </main>
+  </div>
+  <?php if (!$hideHeader) include 'includes/BottomInclude.php' ?>
+
+  <?php include 'includes/logoutModal.php' ?>
+  <script>
+    function openLogoutModal() {
+      document.getElementById("logoutModal").classList.remove("hidden");
+      document.getElementById("logoutModal").classList.add("flex");
+    }
+
+    function closeLogoutModal() {
+      document.getElementById("logoutModal").classList.remove("flex");
+      document.getElementById("logoutModal").classList.add("hidden");
+    }
+  </script>
 </body>
 
 </html>

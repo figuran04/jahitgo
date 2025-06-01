@@ -1,5 +1,11 @@
 <?php
 require '../../controllers/SearchController.php';
+$subscribes = [
+    [
+        'title' => 'Join Our Community',
+        'description' => 'Sign up for our newsletter for exclusive content.',
+    ]
+];
 $pageTitle = "Cari";
 ob_start();
 ?>

@@ -8,18 +8,11 @@ ob_start();
 
 </style>
 <p>Halaman Profil</p>
-<button onclick="openLogoutModal()" class="hover:underline w-min cursor-pointer text-red-400 hover:text-red-600">Keluar</button>
-
-<script>
-    function openLogoutModal() {
-        document.getElementById("logoutModal").classList.remove("hidden");
-    }
-
-    function closeLogoutModal() {
-        document.getElementById("logoutModal").classList.add("hidden");
-    }
-</script>
-
+<?php if (isset($_SESSION['user_id'])): ?>
+    <button onclick="openLogoutModal()" class="hover:underline w-min cursor-pointer text-red-400 hover:text-red-600">Keluar</button>
+<?php else: ?>
+    <a href="../signup" class="w-min whitespace-nowrap inline-block bg-[var(--primary-color)] text-white px-6 py-3 rounded-full text-lg hover:bg-[var(--primary-hover)]">Gabung Sekarang</a>
+<?php endif; ?>
 
 <?php
 $content = ob_get_clean();

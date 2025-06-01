@@ -6,29 +6,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = trim($_POST['password']);
 
+    $redirectUrl = isset($_POST['url']) ? trim($_POST['url']) : '';
+
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Email dan password wajib diisi!";
-        header("Location: ../../views/signin");
+        header("Location: ../../views/signin" . ($redirectUrl ? "?url=" . urlencode($redirectUrl) : ""));
         exit;
     }
 
-    // Buat objek UserModel dengan koneksi database
     $userModel = new UserModel($conn);
     $user = $userModel->getByEmail($email);
 
     if (!$user) {
         $_SESSION['error'] = "Email belum terdaftar.";
-        header("Location: ../../views/signin");
+        header("Location: ../../views/signin" . ($redirectUrl ? "?url=" . urlencode($redirectUrl) : ""));
         exit;
     }
 
     if (!password_verify($password, $user['password'])) {
         $_SESSION['error'] = "Password salah.";
-        header("Location: ../../views/signin");
+        header("Location: ../../views/signin" . ($redirectUrl ? "?url=" . urlencode($redirectUrl) : ""));
         exit;
     }
 
-    // signin sukses
+    // Login sukses
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['user_name'] = htmlspecialchars($user['name']);
     $_SESSION['user_email'] = htmlspecialchars($user['email']);
@@ -37,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION['is_admin'] = true;
         header("Location: ../../views/admin");
     } else {
-        header("Location: ../../views/home");
+        $target = $redirectUrl ? "../../views/" . basename($redirectUrl) . "/" : "../../views/home";
+        header("Location: $target");
     }
     exit;
 }

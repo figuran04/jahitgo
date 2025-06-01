@@ -20,7 +20,6 @@ if (ini_get("session.use_cookies")) {
         $params["httponly"]
     );
 }
-
 // Redirect ke halaman login
 header("Location: ../../views/signin");
 exit;

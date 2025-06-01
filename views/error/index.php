@@ -19,10 +19,10 @@ include "../../controllers/SearchController.php";
 ob_start()
 ?>
 
-<div class="flex flex-col items-center pt-20 text-indigo-600">
+<div class="flex flex-col items-center pt-20 text-[var(--primary-color)]">
     <h1 class="text-4xl font-bold"><?= htmlspecialchars($code) ?></h1>
     <p class="text-2xl font-semibold"><?= htmlspecialchars($message) ?></p>
-    <a href="../home" class="underline mt-8 hover:bg-indigo-700">Kembali ke Beranda</a>
+    <a href="../home" class="underline mt-8 hover:text-[var(--primary-hover)]">Kembali ke Beranda</a>
 </div>
 
 <?php
