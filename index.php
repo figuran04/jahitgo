@@ -1,8 +1,6 @@
 <?php
 require 'controllers/LandingController.php';
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+if (session_status() === PHP_SESSION_NONE) session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-indigo-50 pb-40 pt-20 md:pb-40 md:pt-32">
+    <section class="bg-[var(--primary-light)] pb-40 pt-20 md:pb-40 md:pt-32">
         <!-- <div class="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-r before:from-[var(--primary-color)] before:via-purple-500 before:to-pink-500 before:opacity-20 z-0"></div> -->
         <div class="relative z-10 max-w-3xl mx-auto px-4 text-center">
             <h2 class="text-4xl font-extrabold text-[var(--primary-color)] mb-4 md:text-5xl lg:text-6xl">Jahit Kebutuhanmu, Temukan Penjahit Terbaik</h2>
@@ -70,7 +68,7 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
     </section>
 
-    <div class="h-24 bg-gradient-to-t from-white to-indigo-50"></div>
+    <div class="h-24 bg-gradient-to-t from-white to-[var(--primary-light)]"></div>
 
     <!-- Features -->
     <section id="features" class="py-16 bg-white">

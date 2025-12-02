@@ -1,5 +1,5 @@
 <?php
-session_start(); // Pastikan session dimulai sebelum menghapusnya
+session_start();
 
 // Hapus semua variabel session
 $_SESSION = [];

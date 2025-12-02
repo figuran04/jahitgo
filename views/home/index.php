@@ -21,6 +21,21 @@ ob_start();
 <style type='text/tailwindcss'>
 
 </style>
+<div class="bg-gray-300 w-full h-52 rounded-lg"></div>
+<h1 class="text-2xl font-bold">Rekomendasi Penjahit</h1>
+<div class="overflow-x-auto">
+    <div class="flex gap-2 py-2">
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+    </div>
+</div>
+
 <a href="#" id="a">Home</a>
 
 <p>

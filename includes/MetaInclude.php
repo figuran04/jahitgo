@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="JahitGo merupakan platform ....">
+    <meta name="description" content="JahitGo merupakan platform yang mempertemukan penjahit profesional dan pelanggan dalam satu tempat mudah dan cepat.">
     <meta name="keywords" content="JahitGo, Jahit, Indonesia, Fashion">
     <meta name="author" content="JahitGo Team">
     <title><?php echo isset($pageTitle) ? $pageTitle . " - JahitGo" : "JahitGo"; ?></title>

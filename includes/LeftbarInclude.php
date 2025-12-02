@@ -1,10 +1,8 @@
 <?php
-$currentPath = trim($_SERVER['REQUEST_URI'], '/'); // hasil: jahitgo/views/chat
+$currentPath = trim($_SERVER['REQUEST_URI'], '/');
 $pathParts = explode('/', $currentPath);
 $currentRoute = $pathParts[2] ?? ''; // 'chat' jika ada, defaultnya ''
 ?>
-
-
 
 <!-- Top Menu -->
 <div>
