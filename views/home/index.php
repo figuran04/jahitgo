@@ -21,19 +21,40 @@ ob_start();
 <style type='text/tailwindcss'>
 
 </style>
-<div class="bg-gray-300 w-full h-52 rounded-lg"></div>
+<div class="bg-gray-200 w-full h-52 rounded-lg"></div>
 <h1 class="text-2xl font-bold">Rekomendasi Penjahit</h1>
 <div class="overflow-x-auto">
     <div class="flex gap-2 py-2">
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
-        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0"></div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0 flex flex-col items-center justify-center">
+            <div class="w-20 aspect-square rounded-full bg-[var(--primary-color)]"></div>
+            <p class="font-bold text-xl my-2">Penjahit</p>
+            <p class="text-sm">Username</p>
+            <p>Alamat</p>
+        </div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0 flex flex-col items-center justify-center">
+            <div class="w-20 aspect-square rounded-full bg-[var(--primary-color)]"></div>
+            <p class="font-bold text-xl my-2">Penjahit</p>
+            <p class="text-sm">Username</p>
+            <p>Alamat</p>
+        </div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0 flex flex-col items-center justify-center">
+            <div class="w-20 aspect-square rounded-full bg-[var(--primary-color)]"></div>
+            <p class="font-bold text-xl my-2">Penjahit</p>
+            <p class="text-sm">Username</p>
+            <p>Alamat</p>
+        </div>
+        <div class="bg-gray-300 rounded-lg w-48 h-56 flex-shrink-0 flex flex-col items-center justify-center">
+            <div class="w-20 aspect-square rounded-full bg-[var(--primary-color)]"></div>
+            <p class="font-bold text-xl my-2">Penjahit</p>
+            <p class="text-sm">Username</p>
+            <p>Alamat</p>
+        </div>
     </div>
+</div>
+<div class="border border-gray-300 rounded-lg p-4">
+    <h class="text-xl font-bold mb-4">Daftarkan Jasa Jahit Anda di Jahitgo</h>
+    <p>Gunakan Fitur dan Layanan untuk Meningkatkan Jasa Jahit Anda</p>
+    <button class="rounded-full px-4 py-2 bg-[var(--secondary-color)] text-gray-200 mt-2">Pelajari lebih lanjut</button>
 </div>
 
 <a href="#" id="a">Home</a>
